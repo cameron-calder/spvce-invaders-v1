@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GameplayManagerData
   m_EditorClassIdentifier: 
   playerHealth: 3
-  playerScore: 213
-  playerWave: 11
+  playerScore: 37
+  playerWave: 3
   highScore: 342
-  isHealthAquired: 1
+  isHealthAquired: 0
   isRapidFire: 0
   rapidFireTimer: 0

@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37319878a563473478bd4d8ec3444144, type: 3}
   m_Name: PlayerController2DData
   m_EditorClassIdentifier: 
-  playerHealth: 2
+  playerHealth: 3
   playerFireRate: 1
   playerMoveSpeed: 5
+  renderer: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  FireRateAfterPowerUp: 0
+  HealthAfterPowerUp: 0
+  SpeedAfterPowerUp: 0

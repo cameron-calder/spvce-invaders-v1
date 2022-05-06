@@ -11,4 +11,9 @@ public class PlayerController2DData : ScriptableObject
 
     public SpriteRenderer renderer;
     public Color color;
+
+    [Header("PowerUps")]
+    public float FireRateAfterPowerUp;
+    public int HealthAfterPowerUp;
+    public float SpeedAfterPowerUp;
 }

@@ -5,7 +5,7 @@ using System.Linq;
 
 public class ScoreManager : MonoBehaviour
 {
-    private ScoreData sd;
+    [HideInInspector] public ScoreData sd;
 
     private void Awake()
     {
