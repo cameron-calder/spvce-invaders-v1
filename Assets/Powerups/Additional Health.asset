@@ -15,5 +15,6 @@ MonoBehaviour:
   PowerupType: 1
   Name: Additional Health
   Icon: {fileID: 21300000, guid: 257147892bf460549bf11afa8f200ed0, type: 3}
-  ScoreCost: 50
-  Owned: 0
+  CoinsCost: 10
+  CurrentLevel: 0
+  MaxLevel: 2

@@ -8,6 +8,7 @@ public class PowerupData : ScriptableObject
     public int PowerupType;
     public string Name;
     public Sprite Icon;
-    public int ScoreCost;
-    public bool Owned;
+    public int CoinsCost;
+    public int CurrentLevel;
+    public int MaxLevel;
 }

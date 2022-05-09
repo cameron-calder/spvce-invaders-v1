@@ -707,6 +707,8 @@ MonoBehaviour:
   gameplayManagerData: {fileID: 11400000, guid: a085bb6e453c4e447b646ef21d9f2c61, type: 2}
   enemyName: 0
   enemyType: 0
+  CoinPrefab: {fileID: 5281984508929842790, guid: a6cfa501c910bd04cb4dfbb546fd5431, type: 3}
+  CoinSpawnProbability: 80
   moveSpeed: 1
   projectile: {fileID: 4241557121289335987, guid: 04f446dc492b8e842b57495cf8e98236, type: 3}
   projectileVelocity: 10

@@ -35,6 +35,9 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private GameObject MainCanvas;
     [SerializeField] private GameObject UpgradesMenu;
     [SerializeField] private GameObject UpgradesButton;
+    public int Coins;
+    [SerializeField] private GameObject CoinsDisplay;
+    [SerializeField] private Text CoinsText;
 
     private void Start()
     {
@@ -80,6 +83,10 @@ public class GameplayManager : MonoBehaviour
         clearEnemies = false;
         enemyArrayController.StartArray();
 
+        Coins = 0;
+        CoinsDisplay.SetActive(true);
+        UpdateCoinsText();
+
         if (playerController2DData.FireRateAfterPowerUp > 0)
             playerController2DData.playerFireRate = playerController2DData.FireRateAfterPowerUp;
 
@@ -90,6 +97,11 @@ public class GameplayManager : MonoBehaviour
             playerController2DData.playerMoveSpeed = playerController2DData.SpeedAfterPowerUp;
 
         playerHealthText.text = "Health: " + playerController2DData.playerHealth;
+    }
+
+    void UpdateCoinsText()
+    {
+        CoinsText.text = Coins.ToString("D2");
     }
 
     public void NextWave()
@@ -276,5 +288,17 @@ public class GameplayManager : MonoBehaviour
     {
         UpgradesMenu.SetActive(false);
         MainCanvas.SetActive(true);
+    }
+
+    public void AddCoins(int amount)
+    {
+        Coins += amount;
+        UpdateCoinsText();
+        SaveCoins();
+    }
+
+    public void SaveCoins()
+    {
+        PlayerPrefs.SetInt("Coins", Coins);
     }
 }

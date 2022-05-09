@@ -15,5 +15,6 @@ MonoBehaviour:
   PowerupType: 0
   Name: Rapid Fire
   Icon: {fileID: 21300000, guid: a8e6b500a278a824481f4efc66dc9bbc, type: 3}
-  ScoreCost: 150
-  Owned: 0
+  CoinsCost: 20
+  CurrentLevel: 0
+  MaxLevel: 3

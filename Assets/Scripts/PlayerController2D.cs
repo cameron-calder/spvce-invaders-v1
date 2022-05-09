@@ -99,10 +99,19 @@ public class PlayerController2D : MonoBehaviour
         {
             gameplayManager.UpdateHealth(-1);
 
-            if(playerController2DData.playerHealth == 0)
+            if(playerController2DData.playerHealth <= 0)
             {
                 gameObject.SetActive(false);
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Coin")
+        {
+            Destroy(other.gameObject);
+            gameplayManager.AddCoins(1);
         }
     }
 }

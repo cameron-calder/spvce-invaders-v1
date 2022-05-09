@@ -51,11 +51,11 @@ public class EnemyArrayController : MonoBehaviour
                 //}
 
                 if(z == 0 && x == 0 && gameplayManagerData.playerWave > 4){
-                    enemyController.enemyName = 1;
+                    enemyController.enemyName = EnemyController.EnemyType.Life;
                 }
 
                 if((x == -enemySpawnWidth || x == enemySpawnWidth) && z == 0 && (gameplayManagerData.playerWave == 10 || gameplayManagerData.playerWave == 15)){
-                    enemyController.enemyName = 2;
+                    enemyController.enemyName = EnemyController.EnemyType.RapidFire;
                 }
 
             }

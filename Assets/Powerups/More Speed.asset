@@ -15,5 +15,6 @@ MonoBehaviour:
   PowerupType: 2
   Name: More Speed
   Icon: {fileID: 21300000, guid: 524246dc9a5b303439ccc1749f3ca34b, type: 3}
-  ScoreCost: 100
-  Owned: 0
+  CoinsCost: 15
+  CurrentLevel: 0
+  MaxLevel: 2

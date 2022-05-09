@@ -5,12 +5,14 @@ using UnityEngine;
 //** Needs Data Script to be created.**//
 public class EnemyController : MonoBehaviour
 {
-
+    public enum EnemyType {Normal, Life, RapidFire };
     private GameplayManager gameplayManager;
     [SerializeField]private GameplayManagerData gameplayManagerData;
-    public int enemyName;
+    public EnemyType enemyName;
     public int enemyType;
     //private int lungTimer;
+    [SerializeField] private GameObject CoinPrefab;
+    public float CoinSpawnProbability;
 
     private void Start()
     {
@@ -21,12 +23,12 @@ public class EnemyController : MonoBehaviour
         projectileFireTime = Random.Range(minFireRate, maxFireRate);
         //lungTimer = Random.Range(2, 4);
         Debug.Log(enemyType);
-        if(enemyName == 1)
+        if(enemyName == EnemyType.Life)
         {
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(true);
         }
-        if(enemyName == 2)
+        if(enemyName == EnemyType.RapidFire)
         {
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(2).gameObject.SetActive(true);
@@ -45,6 +47,14 @@ public class EnemyController : MonoBehaviour
         if(gameplayManager.clearEnemies == true)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void SpawnCoin()
+    {
+        if(Random.Range(0, 100) < CoinSpawnProbability)
+        {
+            GameObject CoinClone = Instantiate(CoinPrefab, transform.position, transform.rotation);
         }
     }
 
@@ -255,14 +265,15 @@ public class EnemyController : MonoBehaviour
         if(other.gameObject.tag == "PlayerProjectile")
         {
             Debug.Log("EnemyHit");
+            SpawnCoin();
             gameplayManager.UpdateScore();
-            if(enemyName == 1)
+            if(enemyName == EnemyType.Life)
             {
                 Debug.Log("PlusOneHealth");
                 gameplayManager.UpdateHealth(1);
                 gameplayManagerData.isHealthAquired = true;
             }
-            if(enemyName == 2)
+            if(enemyName == EnemyType.RapidFire)
             {
                 Debug.Log("RapidFire");
                 gameplayManagerData.isRapidFire = true;

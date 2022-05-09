@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UpgradeSlot : MonoBehaviour
 {
+    public UpgradeStore upgradeStore;
     public ScoreManager scoreManager;
     public PlayerController2DData playerController2DData;
     public PowerupData powerupData;
@@ -21,34 +22,30 @@ public class UpgradeSlot : MonoBehaviour
     void UpdateUI()
     {
         NameText.text = powerupData.Name;
-        CostText.text = "UPGRADE\n" + powerupData.ScoreCost.ToString("D2") + " SCORE";
+        CostText.text = "UPGRADE\n" + powerupData.CoinsCost.ToString("D2") + " COINS\nLEVEL " + powerupData.CurrentLevel.ToString("D2") + " / " + powerupData.MaxLevel.ToString("D2");
         Icon.sprite = powerupData.Icon;
 
-        if (powerupData.Owned == true)
-            CostText.text = "OWNED";
+        if (powerupData.CurrentLevel >= powerupData.MaxLevel)
+            CostText.text = "MAX";
     }
 
     public void Buy()
     {
-        if (powerupData.Owned == true)
+        if (powerupData.CurrentLevel >= powerupData.MaxLevel)
             return;
 
-        bool CanBuy = false;
-        for (int i = 0; i < scoreManager.sd.scores.Count; i++)
-        {
-            if (scoreManager.sd.scores[i].score >= powerupData.ScoreCost)
-                CanBuy = true;
-        }
-
-        if (CanBuy == false)
+        if (PlayerPrefs.GetInt("Coins") < powerupData.CoinsCost)
             return;
 
-        powerupData.Owned = true;
+        powerupData.CurrentLevel++;
+
+        PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - powerupData.CoinsCost);
+        upgradeStore.UpdateCoinsText();
 
         //Rapid Fire
         if (powerupData.PowerupType == 0)
         {
-            playerController2DData.FireRateAfterPowerUp = 0.5f;
+            playerController2DData.FireRateAfterPowerUp = 1 - (0.2f * powerupData.CurrentLevel);
             UpdateUI();
             return;
         }
@@ -56,7 +53,7 @@ public class UpgradeSlot : MonoBehaviour
         //Additional Health
         if (powerupData.PowerupType == 1)
         {
-            playerController2DData.HealthAfterPowerUp = 4;
+            playerController2DData.HealthAfterPowerUp = powerupData.CurrentLevel + 3;
             UpdateUI();
             return;
         }
@@ -64,7 +61,7 @@ public class UpgradeSlot : MonoBehaviour
         //Additional Health
         if (powerupData.PowerupType == 2)
         {
-            playerController2DData.SpeedAfterPowerUp = 7;
+            playerController2DData.SpeedAfterPowerUp = 5 + (1.5f * powerupData.CurrentLevel);
             UpdateUI();
             return;
         }

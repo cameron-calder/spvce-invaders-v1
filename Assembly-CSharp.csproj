@@ -53,7 +53,9 @@
     <UnityVersion>2020.3.10f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PowerupData.cs" />
     <Compile Include="Assets\Scripts\RowUI.cs" />
+    <Compile Include="Assets\Scripts\UpgradeSlot.cs" />
     <Compile Include="Assets\Scripts\ScoreData.cs" />
     <Compile Include="Assets\Scripts\GameplayManagerData.cs" />
     <Compile Include="Assets\Scripts\PlayerController2D.cs" />
@@ -67,8 +69,7 @@
     <Compile Include="Assets\Scripts\PlayerController2DData.cs" />
     <Compile Include="Assets\Scripts\EnemyArrayController.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
-    <Compile Include="Assets\Scripts\UpgradeSlot.cs" />
-    <Compile Include="Assets\Scripts\PowerupData.cs" />
+    <Compile Include="Assets\Scripts\UpgradeStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
