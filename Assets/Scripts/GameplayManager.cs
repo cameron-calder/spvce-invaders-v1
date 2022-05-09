@@ -31,6 +31,11 @@ public class GameplayManager : MonoBehaviour
     private int enemiesKilled;
     public ScoreManager scoreManager;
 
+    [Header("Upgrades Menu")]
+    [SerializeField] private GameObject MainCanvas;
+    [SerializeField] private GameObject UpgradesMenu;
+    [SerializeField] private GameObject UpgradesButton;
+
     private void Start()
     {
         playerController2D = player.GetComponent<PlayerController2D>();
@@ -59,6 +64,7 @@ public class GameplayManager : MonoBehaviour
         gameTitleText.gameObject.SetActive(false);
         nameInputField.SetActive(false);
         changeColorText.gameObject.SetActive(false);
+        UpgradesButton.SetActive(false);
         canChangeColor = false;
         newGame.gameObject.SetActive(false);
         currentHighScoreBanner.SetActive(false);
@@ -66,7 +72,6 @@ public class GameplayManager : MonoBehaviour
         playerHealthText.gameObject.SetActive(true);
         playerScoreText.gameObject.SetActive(true);
         playerWaveText.gameObject.SetActive(true);
-        playerHealthText.text = "Health: " + playerController2DData.playerHealth;
         playerScoreText.text = "Score: " + gameplayManagerData.playerScore;
         playerWaveText.text = "Wave: " + gameplayManagerData.playerWave;
         player.SetActive(true);
@@ -74,6 +79,17 @@ public class GameplayManager : MonoBehaviour
         playerController2D.Reset();
         clearEnemies = false;
         enemyArrayController.StartArray();
+
+        if (playerController2DData.FireRateAfterPowerUp > 0)
+            playerController2DData.playerFireRate = playerController2DData.FireRateAfterPowerUp;
+
+        if (playerController2DData.HealthAfterPowerUp > 0)
+            playerController2DData.playerHealth = playerController2DData.HealthAfterPowerUp;
+
+        if (playerController2DData.SpeedAfterPowerUp > 0)
+            playerController2DData.playerMoveSpeed = playerController2DData.SpeedAfterPowerUp;
+
+        playerHealthText.text = "Health: " + playerController2DData.playerHealth;
     }
 
     public void NextWave()
@@ -250,4 +266,15 @@ public class GameplayManager : MonoBehaviour
         }
     }
     
+    public void OpenUpgradesMenu()
+    {
+        UpgradesMenu.SetActive(true);
+        MainCanvas.SetActive(false);
+    }
+
+    public void CloseUpgradesMenu()
+    {
+        UpgradesMenu.SetActive(false);
+        MainCanvas.SetActive(true);
+    }
 }

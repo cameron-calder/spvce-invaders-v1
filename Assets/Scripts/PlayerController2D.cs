@@ -25,6 +25,7 @@ public class PlayerController2D : MonoBehaviour
     public void Activate(bool playerIsActive)
     {
         isActive = playerIsActive;
+        moveSpeed = playerController2DData.playerMoveSpeed;
     }
 
     private Vector2 playerOrigin;
